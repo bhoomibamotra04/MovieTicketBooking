@@ -1,0 +1,108 @@
+.nav {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #e4003b;
+  flex-shrink: 0;
+  letter-spacing: -0.5px;
+}
+.logo span { color: #333; }
+.searchBar {
+  flex: 1;
+  max-width: 380px;
+  position: relative;
+}
+.searchBar input {
+  width: 100%;
+  padding: 0.45rem 1rem 0.45rem 2.4rem;
+  background: #f2f2f2;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  color: #333;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.searchBar input:focus { border-color: #e4003b; background: #fff; }
+.searchIcon {
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 0.85rem;
+}
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.links a {
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.links a:hover { color: #e4003b; }
+.username {
+  color: #333;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.loginBtn {
+  background: transparent;
+  border: 1px solid #e4003b;
+  color: #e4003b;
+  padding: 0.38rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.loginBtn:hover { background: #e4003b; color: #fff; }
+.signupBtn {
+  background: #e4003b;
+  border: none;
+  color: #fff;
+  padding: 0.38rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.signupBtn:hover { background: #c0002e; }
+.logoutBtn {
+  background: transparent;
+  border: 1px solid #ddd;
+  color: #777;
+  padding: 0.38rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.logoutBtn:hover { border-color: #e4003b; color: #e4003b; }
+.myBookings {
+  color: #555;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.myBookings:hover { color: #e4003b; }

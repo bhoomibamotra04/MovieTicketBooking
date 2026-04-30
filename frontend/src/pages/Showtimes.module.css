@@ -1,0 +1,69 @@
+.page { background: #f2f2f2; min-height: 100vh; }
+.container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
+.heading { font-size: 1.2rem; font-weight: 700; color: #333; margin-bottom: 0.2rem; }
+.sub { font-size: 0.85rem; color: #999; margin-bottom: 1.5rem; }
+
+.dateStrip {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  scrollbar-width: none;
+}
+.dateStrip::-webkit-scrollbar { display: none; }
+.dateBtn {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.55rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+  color: #555;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+  min-width: 64px;
+  cursor: pointer;
+}
+.dateBtn .dayNum { font-size: 1.1rem; font-weight: 700; color: #333; line-height: 1.2; }
+.dateBtn:hover { border-color: #e4003b; color: #e4003b; }
+.dateBtn:hover .dayNum { color: #e4003b; }
+.dateBtn.active { background: #e4003b; border-color: #e4003b; color: #fff; }
+.dateBtn.active .dayNum { color: #fff; }
+
+.theaterCard {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.theaterHeader { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.3rem; }
+.theaterName { font-size: 0.95rem; font-weight: 700; color: #333; }
+.theaterTag {
+  font-size: 0.65rem;
+  border: 1px solid #21a67a;
+  color: #21a67a;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.theaterMeta { font-size: 0.78rem; color: #999; margin-bottom: 1rem; }
+.times { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.timeBtn {
+  padding: 0.45rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #21a67a;
+  background: transparent;
+  color: #21a67a;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.timeBtn:hover { background: #21a67a; color: #fff; }
+.priceHint { font-size: 0.72rem; color: #bbb; margin-top: 0.8rem; }
+.divider { border: none; border-top: 1px solid #f2f2f2; margin: 0.8rem 0; }
+
+.empty { text-align: center; padding: 4rem; color: #999; }

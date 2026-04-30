@@ -1,0 +1,16 @@
+{
+  "name": "movie-booking-microservices",
+  "version": "1.0.0",
+  "scripts": {
+    "install-all": "npm install --prefix auth-service && npm install --prefix movie-service && npm install --prefix booking-service && npm install --prefix payment-service && npm install --prefix api-gateway",
+    "dev": "concurrently \"npm run auth\" \"npm run movies\" \"npm run booking\" \"npm run payment\" \"npm run gateway\"",
+    "auth":    "npm run dev --prefix auth-service",
+    "movies":  "npm run dev --prefix movie-service",
+    "booking": "npm run dev --prefix booking-service",
+    "payment": "npm run dev --prefix payment-service",
+    "gateway": "npm run dev --prefix api-gateway"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

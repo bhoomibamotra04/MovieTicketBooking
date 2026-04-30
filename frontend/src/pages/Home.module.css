@@ -1,0 +1,114 @@
+.heroBanner {
+  background: linear-gradient(90deg, #1a1a2e 0%, #2d0a1e 100%);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  color: #fff;
+}
+.heroBanner h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.4rem; }
+.heroBanner p { color: #bbb; font-size: 0.9rem; margin-bottom: 1.5rem; }
+.heroSearch {
+  display: flex;
+  max-width: 520px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+.heroSearch input {
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  color: #333;
+  font-size: 0.95rem;
+  outline: none;
+}
+.heroSearch button {
+  background: #e4003b;
+  border: none;
+  color: #fff;
+  padding: 0 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.heroSearch button:hover { background: #c0002e; }
+
+.filterBar {
+  background: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.filterBar::-webkit-scrollbar { display: none; }
+.filterTab {
+  padding: 0.9rem 1.2rem;
+  border: none;
+  background: transparent;
+  color: #555;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.filterTab:hover { color: #e4003b; }
+.filterTab.active { color: #e4003b; border-bottom-color: #e4003b; font-weight: 700; }
+
+.container { max-width: 1300px; margin: 0 auto; padding: 1.5rem; }
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.sectionTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #333;
+}
+.seeAll {
+  font-size: 0.82rem;
+  color: #e4003b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.2rem;
+}
+
+.promoBar {
+  background: #fff3f5;
+  border: 1px solid #ffd0da;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.promoBar p { font-size: 0.88rem; color: #333; }
+.promoBar strong { color: #e4003b; }
+.promoBtn {
+  background: #e4003b;
+  color: #fff;
+  border: none;
+  padding: 0.45rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.loading { text-align: center; color: #999; padding: 4rem; }
+.empty { text-align: center; color: #999; padding: 4rem; }

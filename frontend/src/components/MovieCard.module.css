@@ -1,0 +1,78 @@
+.card {
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+  border: 1px solid #e8e8e8;
+}
+.card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); transform: translateY(-3px); }
+.posterWrap { position: relative; overflow: hidden; }
+.poster { width: 100%; height: 240px; object-fit: cover; display: block; transition: transform 0.3s; }
+.card:hover .poster { transform: scale(1.04); }
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  opacity: 0;
+  transition: opacity 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card:hover .overlay { opacity: 1; }
+.bookBtn {
+  background: #e4003b;
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1.4rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: background 0.2s;
+}
+.bookBtn:hover { background: #c0002e; }
+.likeBadge {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.info { padding: 0.7rem 0.8rem 0.8rem; }
+.title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.meta { font-size: 0.75rem; color: #999; margin-bottom: 0.4rem; }
+.footer { display: flex; justify-content: space-between; align-items: center; }
+.rating {
+  font-size: 0.75rem;
+  color: #333;
+  font-weight: 600;
+  background: #f2f2f2;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.lang {
+  font-size: 0.7rem;
+  color: #999;
+  border: 1px solid #e8e8e8;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+}

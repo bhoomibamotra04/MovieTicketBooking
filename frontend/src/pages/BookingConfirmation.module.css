@@ -1,0 +1,75 @@
+.page { background: #f2f2f2; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.ticket {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  border: 1px solid #e8e8e8;
+}
+.ticketTop {
+  background: linear-gradient(135deg, #e4003b, #ff4d6d);
+  padding: 2rem;
+  text-align: center;
+  color: #fff;
+}
+.checkIcon { font-size: 2.8rem; margin-bottom: 0.5rem; }
+.ticketTop h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem; }
+.ticketTop p { font-size: 0.83rem; opacity: 0.9; }
+.ticketBody { padding: 1.3rem 1.5rem; }
+.bookingId {
+  background: #f9f9f9;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  border: 1px solid #f0f0f0;
+}
+.bookingId span:first-child { color: #999; }
+.bookingId span:last-child { color: #e4003b; font-weight: 700; font-family: monospace; }
+.divider {
+  border: none;
+  border-top: 2px dashed #e8e8e8;
+  margin: 0.9rem 0;
+}
+.row { display: flex; justify-content: space-between; padding: 0.4rem 0; font-size: 0.85rem; color: #555; }
+.row span:last-child { color: #333; font-weight: 500; text-align: right; max-width: 58%; }
+.qrSection {
+  text-align: center;
+  padding: 0.9rem;
+  background: #f9f9f9;
+  border-radius: 6px;
+  margin: 0.9rem 0;
+  border: 1px solid #f0f0f0;
+}
+.qrCode { font-size: 3.5rem; margin-bottom: 0.2rem; }
+.qrText { font-size: 0.72rem; color: #bbb; }
+.actions { display: flex; gap: 0.7rem; padding: 0 1.5rem 1.5rem; }
+.primaryBtn {
+  flex: 1;
+  background: #e4003b;
+  color: #fff;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.primaryBtn:hover { background: #c0002e; }
+.secondaryBtn {
+  flex: 1;
+  background: transparent;
+  color: #555;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  transition: border-color 0.2s;
+}
+.secondaryBtn:hover { border-color: #999; }
+.loading { text-align: center; padding: 5rem; color: #999; }
