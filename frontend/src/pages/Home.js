@@ -68,12 +68,12 @@ export default function Home() {
           <span className={styles.seeAll}>See All &rsaquo;</span>
         </div>
 
-        {loading ? (
+        {loading && movies.length === 0 ? (
           <p className={styles.loading}>Loading movies...</p>
-        ) : movies.length === 0 ? (
+        ) : !loading && movies.length === 0 ? (
           <p className={styles.empty}>No movies found.</p>
         ) : (
-          <div className={styles.grid}>
+          <div className={`${styles.grid} ${loading ? styles.fetching : ''}`}>
             {movies.map((m) => <MovieCard key={m._id} movie={m} />)}
           </div>
         )}

@@ -84,6 +84,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1.2rem;
+  transition: opacity 0.2s ease-in-out;
+}
+.fetching {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .promoBar {
