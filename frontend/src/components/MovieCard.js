@@ -8,10 +8,10 @@ export default function MovieCard({ movie }) {
     <div className={styles.card} onClick={() => navigate(`/movies/${movie._id}`)}>
       <div className={styles.posterWrap}>
         <img
-          src={movie.posterUrl || 'https://via.placeholder.com/300x400?text=No+Poster'}
+          src={movie.posterUrl || '/images/placeholder.png'}
           alt={movie.title}
           className={styles.poster}
-          onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/300x400?text=No+Poster'; }}
+          onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.png'; }}
         />
         <div className={styles.overlay}>
           <button className={styles.bookBtn}>Book tickets</button>

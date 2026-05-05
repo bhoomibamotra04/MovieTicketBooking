@@ -20,10 +20,10 @@ export default function MovieDetails() {
         <div className={styles.container}>
           <div className={styles.heroContent}>
             <img
-              src={movie.posterUrl || 'https://via.placeholder.com/200x290?text=No+Poster'}
+              src={movie.posterUrl || '/images/placeholder.png'}
               alt={movie.title}
               className={styles.poster}
-              onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/200x290?text=No+Poster'; }}
+              onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.png'; }}
             />
             <div className={styles.info}>
               <h1 className={styles.title}>{movie.title}</h1>

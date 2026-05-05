@@ -52,7 +52,7 @@ export default function Checkout() {
           <div className={styles.card}>
             <p className={styles.cardTitle}>📋 Order Summary</p>
             <div className={styles.movieRow}>
-              <img src={showtime.movie?.posterUrl || 'https://via.placeholder.com/60x85?text=No+Poster'} alt="" className={styles.poster} onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/60x85?text=No+Poster'; }} />
+              <img src={showtime.movie?.posterUrl || '/images/placeholder.png'} alt="" className={styles.poster} onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.png'; }} />
               <div className={styles.movieInfo}>
                 <h4>{showtime.movie?.title}</h4>
                 <p>🏛️ {showtime.theater}</p>
