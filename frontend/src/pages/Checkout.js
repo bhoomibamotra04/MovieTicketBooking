@@ -9,15 +9,28 @@ export default function Checkout() {
   const navigate = useNavigate();
   const [method, setMethod] = useState('card');
   const [loading, setLoading] = useState(false);
+  const [card, setCard] = useState({ number: '', expiry: '', cvv: '', name: '' });
+  const [upi, setUpi] = useState('');
 
   if (!state) return <p className={styles.loading}>No booking data.</p>;
   const { showtime, selectedSeats, totalAmount } = state;
 
   const handlePayment = async () => {
+    if (method === 'card') {
+      const numStripped = card.number.replace(/\s+/g, '');
+      if (!/^\d{16}$/.test(numStripped)) return toast.error('Credit card number must be exactly 16 digits');
+      if (!/^\d{2}\/\d{2}$/.test(card.expiry)) return toast.error('Expiry must be MM/YY');
+      if (!/^\d{3,4}$/.test(card.cvv)) return toast.error('CVV must be 3 or 4 digits');
+      if (!card.name.trim()) return toast.error('Name on card is required');
+    }
+    if (method === 'upi' && !/^[a-zA-Z0-9.\-_]+@[a-zA-Z]+$/.test(upi)) {
+      return toast.error('Invalid UPI ID');
+    }
+
     setLoading(true);
     try {
       const { data: booking } = await api.post('/bookings', { showtimeId: showtime._id, seats: selectedSeats });
-      await api.post('/payments', { bookingId: booking._id, method });
+      await api.post('/payments', { bookingId: booking._id, method, amount: totalAmount + convenience });
       toast.success('🎉 Booking confirmed!');
       navigate(`/booking/${booking._id}/confirmation`);
     } catch (err) {
@@ -39,7 +52,7 @@ export default function Checkout() {
           <div className={styles.card}>
             <p className={styles.cardTitle}>📋 Order Summary</p>
             <div className={styles.movieRow}>
-              <img src={showtime.movie?.posterUrl || 'https://via.placeholder.com/60x85'} alt="" className={styles.poster} />
+              <img src={showtime.movie?.posterUrl || 'https://via.placeholder.com/60x85?text=No+Poster'} alt="" className={styles.poster} onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/60x85?text=No+Poster'; }} />
               <div className={styles.movieInfo}>
                 <h4>{showtime.movie?.title}</h4>
                 <p>🏛️ {showtime.theater}</p>
@@ -78,17 +91,17 @@ export default function Checkout() {
 
             {method === 'card' && (
               <div className={styles.cardForm}>
-                <input className={styles.input} placeholder="Card Number" maxLength={19} />
+                <input className={styles.input} placeholder="Card Number (16 digits)" maxLength={19} value={card.number} onChange={(e) => setCard({...card, number: e.target.value})} />
                 <div className={styles.inputRow}>
-                  <input className={styles.input} placeholder="MM / YY" />
-                  <input className={styles.input} placeholder="CVV" maxLength={3} />
+                  <input className={styles.input} placeholder="MM/YY" maxLength={5} value={card.expiry} onChange={(e) => setCard({...card, expiry: e.target.value})} />
+                  <input className={styles.input} placeholder="CVV" maxLength={4} value={card.cvv} onChange={(e) => setCard({...card, cvv: e.target.value})} />
                 </div>
-                <input className={styles.input} placeholder="Name on Card" />
+                <input className={styles.input} placeholder="Name on Card" value={card.name} onChange={(e) => setCard({...card, name: e.target.value})} />
               </div>
             )}
             {method === 'upi' && (
               <div className={styles.cardForm}>
-                <input className={styles.input} placeholder="Enter UPI ID (e.g. name@upi)" />
+                <input className={styles.input} placeholder="Enter UPI ID (e.g. name@upi)" value={upi} onChange={(e) => setUpi(e.target.value)} />
               </div>
             )}
 

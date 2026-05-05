@@ -11,6 +11,7 @@ export default function MovieCard({ movie }) {
           src={movie.posterUrl || 'https://via.placeholder.com/300x400?text=No+Poster'}
           alt={movie.title}
           className={styles.poster}
+          onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/300x400?text=No+Poster'; }}
         />
         <div className={styles.overlay}>
           <button className={styles.bookBtn}>Book tickets</button>

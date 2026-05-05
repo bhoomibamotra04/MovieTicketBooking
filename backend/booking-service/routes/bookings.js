@@ -28,7 +28,7 @@ router.post('/', protect, async (req, res) => {
     const updatedSeats = showtime.seats.map((s) =>
       seatNumbers.includes(s.seatNumber) ? { ...s, isBooked: true } : s
     );
-    await axios.put(`${MOVIE_SERVICE}/api/showtimes/${showtimeId}`, { seats: updatedSeats });
+    await axios.put(`${MOVIE_SERVICE}/api/showtimes/${showtimeId}/seats`, { seats: updatedSeats });
 
     const totalAmount = seats.reduce((sum, s) => sum + s.price, 0);
 
@@ -99,7 +99,7 @@ router.put('/:id/cancel', protect, async (req, res) => {
     const updatedSeats = showtime.seats.map((s) =>
       seatNumbers.includes(s.seatNumber) ? { ...s, isBooked: false } : s
     );
-    await axios.put(`${MOVIE_SERVICE}/api/showtimes/${booking.showtime}`, { seats: updatedSeats });
+    await axios.put(`${MOVIE_SERVICE}/api/showtimes/${booking.showtime}/seats`, { seats: updatedSeats });
 
     booking.status = 'cancelled';
     await booking.save();

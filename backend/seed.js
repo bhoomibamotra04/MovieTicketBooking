@@ -3,11 +3,14 @@
 
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-dotenv.config();
+const path = require('path');
 
-const Movie = require('./models/Movie');
-const Showtime = require('./models/Showtime');
-const User = require('./models/User');
+// Load env from auth-service (has MONGO_URI)
+dotenv.config({ path: path.join(__dirname, 'auth-service', '.env') });
+
+const Movie = require('./movie-service/models/Movie');
+const Showtime = require('./movie-service/models/Showtime');
+const User = require('./auth-service/models/User');
 
 const movies = [
   // ACTION
@@ -385,11 +388,11 @@ async function seed() {
     return d.toISOString().split('T')[0];
   });
 
-  // Create showtimes: each movie × each date × 2 theaters × 2 time slots
+  // Create showtimes: each movie × each date × 3 theaters × 2 time slots
   let showtimeCount = 0;
   for (const movie of createdMovies) {
     for (const date of dates) {
-      for (const theater of theaters.slice(0, 2)) {
+      for (const theater of theaters.slice(0, 3)) {
         for (const slot of timeSlots.slice(0, 2)) {
           await Showtime.create({
             movie: movie._id,

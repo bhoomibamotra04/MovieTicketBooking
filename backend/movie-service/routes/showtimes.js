@@ -50,6 +50,21 @@ router.put('/:id', protect, adminOnly, async (req, res) => {
   }
 });
 
+// PUT /api/showtimes/:id/seats — update showtime seats (internal call)
+router.put('/:id/seats', async (req, res) => {
+  try {
+    const showtime = await Showtime.findByIdAndUpdate(
+      req.params.id,
+      { seats: req.body.seats },
+      { new: true }
+    );
+    if (!showtime) return res.status(404).json({ message: 'Showtime not found' });
+    res.json(showtime);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
 // DELETE /api/showtimes/:id (admin only)
 router.delete('/:id', protect, adminOnly, async (req, res) => {
   try {

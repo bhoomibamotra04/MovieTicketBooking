@@ -1,34 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const dotenv = require('dotenv');
+/**
+ * NOTE: This project uses a MICROSERVICES architecture.
+ * The actual servers are in:
+ *   backend/auth-service/server.js    (port 3001)
+ *   backend/movie-service/server.js   (port 3002)
+ *   backend/booking-service/server.js (port 3003)
+ *   backend/payment-service/server.js (port 3004)
+ *   backend/api-gateway/server.js     (port 5000)
+ *
+ * To start everything: run start-all.bat from the project root
+ * To start only backend: run backend/start-services.bat
+ */
 
-dotenv.config();
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-// Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/movies', require('./routes/movies'));
-app.use('/api/showtimes', require('./routes/showtimes'));
-app.use('/api/bookings', require('./routes/bookings'));
-app.use('/api/payments', require('./routes/payments'));
-
-// Error handler
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: err.message || 'Server Error' });
-});
-
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log('MongoDB connected');
-    app.listen(process.env.PORT, () =>
-      console.log(`Server running on port ${process.env.PORT}`)
-    );
-  })
-  .catch((err) => console.error(err));
+console.log('This project uses microservices.');
+console.log('Run start-all.bat from the project root to start everything.');
+console.log('Or run backend/start-services.bat for backend only.');

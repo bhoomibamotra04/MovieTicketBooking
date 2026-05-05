@@ -23,6 +23,7 @@ export default function MovieDetails() {
               src={movie.posterUrl || 'https://via.placeholder.com/200x290?text=No+Poster'}
               alt={movie.title}
               className={styles.poster}
+              onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/200x290?text=No+Poster'; }}
             />
             <div className={styles.info}>
               <h1 className={styles.title}>{movie.title}</h1>
