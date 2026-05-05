@@ -360,7 +360,10 @@ const timeSlots = [
 ];
 
 async function seed() {
-  const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/moviebooking';
+  let uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/moviebooking';
+  if (uri.includes('localhost')) {
+    uri = uri.replace('localhost', '127.0.0.1');
+  }
   await mongoose.connect(uri);
   console.log('Connected to MongoDB at ' + uri);
 
