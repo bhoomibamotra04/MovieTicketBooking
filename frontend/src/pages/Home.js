@@ -11,8 +11,15 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [inputVal, setInputVal] = useState('');
   const [search, setSearch] = useState('');
+  const [dealCopied, setDealCopied] = useState(false);
 
   useEffect(() => { fetchMovies(); }, [search, genre]);
+
+  const handleGrabDeal = () => {
+    navigator.clipboard.writeText('WEEKEND20');
+    setDealCopied(true);
+    setTimeout(() => setDealCopied(false), 2000);
+  };
 
   const fetchMovies = async () => {
     setLoading(true);
@@ -60,7 +67,9 @@ export default function Home() {
       <div className={styles.container}>
         <div className={styles.promoBar}>
           <p>🎉 <strong>Weekend Offer:</strong> Get 20% off on VIP seats. Use code <strong>WEEKEND20</strong></p>
-          <button className={styles.promoBtn}>Grab Deal</button>
+          <button className={styles.promoBtn} onClick={handleGrabDeal}>
+            {dealCopied ? 'Copied!' : 'Grab Deal'}
+          </button>
         </div>
 
         <div className={styles.sectionHeader}>

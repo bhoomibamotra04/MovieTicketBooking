@@ -82,4 +82,12 @@
 .payBtn:not(:disabled):hover { background: #c0002e; }
 .note { text-align: center; font-size: 0.72rem; color: #bbb; margin-top: 0.5rem; }
 .loading { text-align: center; padding: 3rem; color: #999; }
+.promoRow { display: flex; gap: 0.6rem; margin-top: 1rem; }
+.promoInput { flex: 1; padding: 0.5rem 0.8rem; background: #fafafa; border: 1px solid #e8e8e8; border-radius: 6px; font-size: 0.85rem; outline: none; transition: border-color 0.2s; }
+.promoInput:focus { border-color: #e4003b; }
+.promoBtn { padding: 0.5rem 1rem; background: #333; color: white; border: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.promoBtn:hover { background: #111; }
+.promoBtn:disabled { background: #ccc; cursor: not-allowed; }
+.discountRow { display: flex; justify-content: space-between; font-size: 0.83rem; margin-bottom: 0.4rem; color: #10b981; font-weight: 600; }
+
 @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }

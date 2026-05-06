@@ -365,6 +365,15 @@ async function seed() {
     uri = uri.replace('localhost', '127.0.0.1');
   }
   await mongoose.connect(uri);
+  try {
+    const movieMongoose = require('./movie-service/node_modules/mongoose');
+    await movieMongoose.connect(uri);
+  } catch(e) {}
+  try {
+    const authMongoose = require('./auth-service/node_modules/mongoose');
+    await authMongoose.connect(uri);
+  } catch(e) {}
+  
   console.log('Connected to MongoDB at ' + uri);
 
   // Clear existing data
@@ -392,12 +401,12 @@ async function seed() {
     return d.toISOString().split('T')[0];
   });
 
-  // Create showtimes: each movie × each date × 3 theaters × 2 time slots
+  // Create showtimes: each movie × each date × 3 theaters × all time slots
   let showtimeCount = 0;
   for (const movie of createdMovies) {
     for (const date of dates) {
       for (const theater of theaters.slice(0, 3)) {
-        for (const slot of timeSlots.slice(0, 2)) {
+        for (const slot of timeSlots) {
           await Showtime.create({
             movie: movie._id,
             theater: theater.name,
@@ -415,7 +424,7 @@ async function seed() {
     }
   }
 
-  console.log(`✅ Seeded ${showtimeCount} showtimes (7 days × 2 theaters × 2 slots per movie)`);
+  console.log(`✅ Seeded ${showtimeCount} showtimes (7 days × 3 theaters × 4 slots per movie)`);
   console.log('\n🎬 Genres seeded: Action, Comedy, Drama, Horror, Romance, Thriller, Sci-Fi');
   console.log('📅 Dates available:', dates[0], '→', dates[6]);
   console.log('\nSeeding complete!');

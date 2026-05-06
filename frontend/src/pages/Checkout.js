@@ -11,9 +11,33 @@ export default function Checkout() {
   const [loading, setLoading] = useState(false);
   const [card, setCard] = useState({ number: '', expiry: '', cvv: '', name: '' });
   const [upi, setUpi] = useState('');
+  const [promoCode, setPromoCode] = useState('');
+  const [discount, setDiscount] = useState(0);
 
   if (!state) return <p className={styles.loading}>No booking data.</p>;
   const { showtime, selectedSeats, totalAmount } = state;
+
+  const convenience = Math.round(totalAmount * 0.05);
+  const finalTotal = totalAmount + convenience - discount;
+
+  const handleApplyPromo = () => {
+    if (promoCode.trim().toUpperCase() === 'WEEKEND20') {
+      const showDate = new Date(showtime.date);
+      const day = showDate.getDay();
+      
+      if (day === 0 || day === 6) {
+        const discountAmount = Math.round(totalAmount * 0.20);
+        setDiscount(discountAmount);
+        toast.success('Promo code applied successfully!');
+      } else {
+        setDiscount(0);
+        toast.error('This deal is not available on weekdays');
+      }
+    } else {
+      setDiscount(0);
+      toast.error('Invalid promo code');
+    }
+  };
 
   const handlePayment = async () => {
     if (method === 'card') {
@@ -30,7 +54,7 @@ export default function Checkout() {
     setLoading(true);
     try {
       const { data: booking } = await api.post('/bookings', { showtimeId: showtime._id, seats: selectedSeats });
-      await api.post('/payments', { bookingId: booking._id, method, amount: totalAmount + convenience });
+      await api.post('/payments', { bookingId: booking._id, method, amount: finalTotal });
       toast.success('🎉 Booking confirmed!');
       navigate(`/booking/${booking._id}/confirmation`);
     } catch (err) {
@@ -39,8 +63,6 @@ export default function Checkout() {
       setLoading(false);
     }
   };
-
-  const convenience = Math.round(totalAmount * 0.05);
 
   return (
     <div className={styles.page}>
@@ -70,7 +92,18 @@ export default function Checkout() {
             <hr className={styles.divider} />
             <div className={styles.row}><span>Subtotal</span><span>₹{totalAmount}</span></div>
             <div className={styles.row}><span>Convenience Fee</span><span>₹{convenience}</span></div>
-            <div className={styles.totalRow}><span>Total</span><span>₹{totalAmount + convenience}</span></div>
+            {discount > 0 && <div className={styles.discountRow}><span>Discount (WEEKEND20)</span><span>-₹{discount}</span></div>}
+            <div className={styles.totalRow}><span>Total</span><span>₹{finalTotal}</span></div>
+            
+            <div className={styles.promoRow}>
+              <input 
+                className={styles.promoInput} 
+                placeholder="Enter Promo Code" 
+                value={promoCode} 
+                onChange={(e) => setPromoCode(e.target.value)} 
+              />
+              <button className={styles.promoBtn} onClick={handleApplyPromo}>Apply</button>
+            </div>
           </div>
 
           {/* Payment */}
@@ -106,7 +139,7 @@ export default function Checkout() {
             )}
 
             <button className={styles.payBtn} onClick={handlePayment} disabled={loading}>
-              {loading ? 'Processing...' : `Pay ₹${totalAmount + convenience}`}
+              {loading ? 'Processing...' : `Pay ₹${finalTotal}`}
             </button>
             <p className={styles.note}>🔒 Secure payment • Demo mode — no real charge</p>
           </div>
